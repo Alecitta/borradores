@@ -24,11 +24,11 @@ La lista que creamos en [De HTML a lista de palabras (parte 2)][] necesita ciert
 - *html-a-lista-1.py*
 - *obo.py*
 
-Si no tienes estos archivos de la lección previa, puedes escargar un [zip][]
+Si no tienes estos archivos de la lección previa, puedes descargar un [zip][]
 
 ## Limpiar la lista
 
-En [De HTML a lista de palabras (parte 2)][], escribimos un programa en Python llamado *html-a-lista-1.py* que descargó una [página Web][], retiró el formato HTML y los metadatos y nos devolvió una lista de "palabras" como la que se muestra más abajo. Técnicamente, estas entidades son llamadas "*tokens*" (o "*componente léxico*") en vez de "palabras". Estos incluyen cosas que nos son palabras estrictamente hablando (como la abreviatura &c. de "etcétera"). También incluyen algunas cosas que se podrían considerar componentes de más de una palabra.  El posesivo "Akerman's" en idioma inglés, por ejemplo, algunas veces es analizado por los lingüístas como dos palabras: "Akerman" más un marcador posesivo. En inglés también, ¿"o'clock" es una o dos palabras? Y así.
+En [De HTML a lista de palabras (parte 2)][], escribimos un programa en Python llamado *html-a-lista-1.py* que descargó una [página Web][], retiró el formato HTML y los metadatos y nos devolvió una lista de "palabras" como la que se muestra más abajo. Técnicamente, estas entidades son llamadas "*tokens*" (o "*componente léxico*") en vez de "palabras". Estos incluyen cosas que no son palabras estrictamente hablando (como la abreviatura &c. de "etcétera"). También incluyen algunas cosas que se podrían considerar componentes de más de una palabra.  El posesivo "Akerman's" en idioma inglés, por ejemplo, algunas veces es analizado por los lingüístas como dos palabras: "Akerman" más un marcador posesivo. En inglés también, ¿"o'clock" es una o dos palabras? Y así.
 
 Regresa a tu programa *html-a-lista-1.py* y asegúrate de que tus resultados se vean como algo por el estilo de esto:
 
@@ -52,11 +52,11 @@ Regresa a tu programa *html-a-lista-1.py* y asegúrate de que tus resultados se 
 
 Por sí misma, esta habilidad de separar el documento en palabras no nos ayuda mucho porque nosotros ya sabemos cómo leerlo. Sin embargo, podemos usar el texto para hacer cosas que normalmente no son posibles sin un programa especial. Vamos a comenzar por computar la frecuencia de los tokens y otras unidades lingüísticas, una medida clásica de un texto.
 
-Queda claro que nuestra lista va a necesitar cierta limpieza antes e que la podamos utilizar para contar frecuencias. Conservando la práctica establecida en [De HTML a lista de palabras (parte 1)][], tratemos de describir nuestro algoritmo primero en lenguaje llano. Queremos saber la frecuencia con la que aparece, en la transcripción del juicio, cada palabra con significado. De tal manera, los pasos a seguir deben verse de la siguiente manera:
+Queda claro que nuestra lista va a necesitar cierta limpieza antes de que la podamos utilizar para contar frecuencias. Conservando la práctica establecida en [De HTML a lista de palabras (parte 1)][], tratemos de describir nuestro algoritmo primero en lenguaje llano. Queremos saber la frecuencia con la que aparece, en la transcripción del juicio, cada palabra con significado. De tal manera, los pasos a seguir deben verse de la siguiente manera:
 
 -   Convierte todas las palabras a minúsculas para que "BENJAMIN" y "benjamin" sean contadas como una misma palabra
 -   Retira cualquier carácter extraño o inusual
--   Cuenta en número de vees que aparece cada palabra
+-   Cuenta en número de veces que aparece cada palabra
 -   Retira palabras demasiado comunes como "eso", "el", "y", etc.
 
 ## Convertir a minúsculas
@@ -85,11 +85,11 @@ Como hemos dicho antes, Python hace muy fácil hacer mucho con muy poco código.
 
 En este punto podríamos mirar con atención otras entradas del "Old Bailey" en línea así como una amplia gama de otras fuentes potenciales para asegurarnos de que no hay otros caracteres especiales que podrían causar problemas más adelante. También podríamos tratar de anticipar situaciones en las que no queremos deshacernos de cierta puntuación (por ejemplo, los distintivos de cantidades monetarios como "$1629" o “£1295”, de fechas, o el reconocer que "1629-40" tiene un significado distinto que "1629 40"). Esto es lo que a lo programadores profesionales se les paga por ahcer: trata de pensar en todo lo que podría ir mal y tratalo de antemano.
 
-Veámoslo desde otra perspectiva. Nuestro objetivo principal es desarrollar técnicas que un historiador puede utilizar durante el proceso de investigación. Esto significa que casi siempre preferimos soluciones aproximadamente correctas que puedan desarrollarse rápidamente. Así que, en lugar de invertir tiempo en hacer nuestro programa sólido de cara a excepciones, simplemente queremos deshacernos de todo aquello que no sea un carácter con o sin acentos o un número arábigo. La programación generalmente es un proceso de "reefinamiento paso a paso". Empiezas con un problema y partes de una solución, y luego sigues refinando tu slución hasta que tienes algo que funciona mejor.
+Veámoslo desde otra perspectiva. Nuestro objetivo principal es desarrollar técnicas que un historiador puede utilizar durante el proceso de investigación. Esto significa que casi siempre preferimos soluciones aproximadamente correctas que puedan desarrollarse rápidamente. Así que, en lugar de invertir tiempo en hacer nuestro programa sólido de cara a excepciones, simplemente queremos deshacernos de todo aquello que no sea un carácter con o sin acentos o un número arábigo. La programación generalmente es un proceso de "refinamiento paso a paso". Empiezas con un problema y partes de una solución, y luego sigues refinando tu solución hasta que tienes algo que funciona mejor.
 
 ## Expresiones regulares en Python
 
-Hemos eliminado las mayúsculas. Ahora nos toca deshacernos de los signos de puntuación. La untuación echa a perder nuestras cuentas de frecuencia si la dejamos. ¿Queremos que "evening?" sea contada como "evening" y "1780." como "1780"? ¡Por supuesto!
+Hemos eliminado las mayúsculas. Ahora nos toca deshacernos de los signos de puntuación. La puntuación echa a perder nuestras cuentas de frecuencia si la dejamos. ¿Queremos que "evening?" sea contada como "evening" y "1780." como "1780"? ¡Por supuesto!
 
 Es posible utilizar el método de cadena "replace" para retirar cada tipo de puntuación:
 
@@ -100,16 +100,16 @@ texto = texto.replace(',', '')
 #etc...
 ```
 
-Pero esto no es verdaderamente eficiente. Ateniéndonos a nuestro objetivo de crear programas breves y poderosos, vamos a utitizar un mecanismo llamado "expresiones regulares". Las expresiones regulares son provistas por varios lenguajes de programación en un intervalo de formas distintas.
+Pero esto no es verdaderamente eficiente. Ateniéndonos a nuestro objetivo de crear programas breves y poderosos, vamos a utilizar un mecanismo llamado "expresiones regulares". Las expresiones regulares son provistas por varios lenguajes de programación en un intervalo de formas distintas.
 
-Las expresiones regulares te permiten buscar patrones bien definidos y pueden acortar drásticamente la longitud de tu código. Por ejemplo, si deseas saber si una subcadena coincidió con una letra del alfabeto, en lugar de utilizar la sentencia if / else para comprobar la coincidencia con la letra "a", luego la "b" y luego la "c", y así sucesivamente, se podría utilizar una expresión regular para ver si coincide con la subcadena cualquer letra entre la "a" y la "z". o bien, puedes comprobar la presencia de un dígito o una letra mayúscula, o de cualquier carácter alfanumérico, un retorno de carro ocualquier combinación de los anteriores y mucho más.
+Las expresiones regulares te permiten buscar patrones bien definidos y pueden acortar drásticamente la longitud de tu código. Por ejemplo, si deseas saber si una subcadena coincidió con una letra del alfabeto, en lugar de utilizar la sentencia if / else para comprobar la coincidencia con la letra "a", luego la "b" y luego la "c", y así sucesivamente, se podría utilizar una expresión regular para ver si coincide con la subcadena cualquer letra entre la "a" y la "z". o bien, puedes comprobar la presencia de un dígito o una letra mayúscula, o de cualquier carácter alfanumérico, un retorno de carro o cualquier combinación de los anteriores y mucho más.
 
 En Python, las expresiones regulares están disponibles como un módulo de Python. Para acelerar el procesamiento éste no se carga automáticamente porque no todos los programas lo requieren. Por lo tanto, tendrás que importar (`import`) el módulo (llamado *re*) de la misma manera en la que has importado tu propio módulo *obo.py*.
 
 Dado que nos interesan solamente los caracteres alfanuméricos, vamos a crear una expresión regular que aislará sólo estos y eliminará el resto. Copia la siguiente función y pégala al final del módulo *obo.py*. Puedes dejar las otras funciones en el módulo solo ya que seguiremos utilizándolas.
 
 ``` python
-# Dada una cadena de caracteres, retira todo los caracteres 
+# Dada una cadena de caracteres, retira todos los caracteres 
 # no-alfanuméricos (utilizando la definición Unicode de alfanumérico).
 
 def quitaNoAlfaNum(texto):
