@@ -37,7 +37,7 @@ El siguiente escalón es implementar el algoritmo que busca cada uno de los cara
 
 ### Bucles (*Looping*)
 
-Como muchos lenguajes de programación Python incluye un número de mecanismos de bucle . El que necesitarás usar en este caso es un *bucle for*. La versión debajo le dice al intérprete que haga algo en cada carácter de una cadena llamada *contenidoPagina*. La variable *caract* contendrá cada carácter de *contenidoPagina* en sucesión. le dimos el nombre *caract* porque no tiene porque no tiene un significado especial y podríamos haberlo llamado *tintineo* o *k* si nos hubiéramos sentido tentados. Puedes utilizar la codificación a colores en Komodo Edit como una guía para decidir si una palabra es una variable con un nombre dado por el usuario (como *caract*) o se trata de un nombre definido para Python que sirve para un propósito específico (como '`for`'). Generalmente es buena idea darle a las variables nombres que provean información acerca de lo que contienen. Esto hará mucho más fácil entender un programa que no has revisado desde hace tiempo. Con esto en mente, *tintineo* no es seguramente una buena elección para el nombre de la variable en este caso.
+Como muchos lenguajes de programación Python incluye un número de mecanismos de bucle . El que necesitarás usar en este caso es un *bucle for*. La versión debajo le dice al intérprete que haga algo en cada carácter de una cadena llamada *contenidoPagina*. La variable *caract* contendrá cada carácter de *contenidoPagina* en sucesión. le dimos el nombre *caract* porque no tiene un significado especial y podríamos haberlo llamado *tintineo* o *k* si nos hubiéramos sentido tentados. Puedes utilizar la codificación a colores en Komodo Edit como una guía para decidir si una palabra es una variable con un nombre dado por el usuario (como *caract*) o se trata de un nombre definido para Python que sirve para un propósito específico (como '`for`'). Generalmente es buena idea darle a las variables nombres que provean información acerca de lo que contienen. Esto hará mucho más fácil entender un programa que no has revisado desde hace tiempo. Con esto en mente, *tintineo* no es seguramente una buena elección para el nombre de la variable en este caso.
 
 ``` python
 for caract in contenidoPagina:
@@ -46,7 +46,7 @@ for caract in contenidoPagina:
 
 ### Salto (*Branching*)
 
-Enseguida necesitarás una manera de comprobar los contenidos de una cadena y escoger la acción a seguir basada en esa prueba. De nuevo, como muchos lenguajes de programación, Python incluye un número de mecanismos de salto (o estructuras de control). La que vamos a utilizar aquí es la *sentencia condicional if*. La versión debajo hace una prueba para ver si la cadena llamada *caract* consiste en un corchete angula izquierdo. Como mencionamos anteriormente, la sangría o indentación en Python es importante. Si el código está indentado, Python lo ejecutará cuando la condición sea verdadera.
+Enseguida necesitarás una manera de comprobar los contenidos de una cadena y escoger la acción a seguir basada en esa prueba. De nuevo, como muchos lenguajes de programación, Python incluye un número de mecanismos de salto (o estructuras de control). La que vamos a utilizar aquí es la *sentencia condicional if*. La versión debajo hace una prueba para ver si la cadena llamada *caract* consiste en un corchete angular izquierdo. Como mencionamos anteriormente, la sangría o indentación en Python es importante. Si el código está indentado, Python lo ejecutará cuando la condición sea verdadera.
 
 Toma en cuanta que Python utiliza el signo de igual (=) para *asignación*, es decir, para ajustar que una cosa sea equivalente a otra. Con el fin de comprobar la igualdad, utiliza dos signos de igual (==) en lugar de uno. Los programadores principiantes suelen confundir ambos.
 
@@ -55,7 +55,7 @@ if caract == '<':
     # haz algo
 ```
 
-Una forma más general de la sentencia condicional if te permite especificar qué hacer ante un evento en el la condición de prueba es falsa.
+Una forma más general de la sentencia condicional if te permite especificar qué hacer ante un evento en el que la condición de prueba es falsa.
 
 ```python
 if caract == '<':
@@ -77,7 +77,7 @@ else:
 
 ## Utiliza el algoritmo para retirar el marcado en HTML
 
-Ahora sabes lo suficiente para implementar la segunda parte del algoritmo: retirar todas las etiquetas HTML. En esta parte el algoritmo queremos:
+Ahora sabes lo suficiente para implementar la segunda parte del algoritmo: retirar todas las etiquetas HTML. En esta parte del algoritmo queremos:
 
 - Buscar en cada caracter de la cadena *contenidoPagina*, un caracter a la vez
 - Si el caracter es un corchete angular izquierdo (\<) estamos dentro de una etiqueta así que ignora el caracter
@@ -176,7 +176,7 @@ listPalabras = s2.split()
 print(listPalabras)
 ```
 
-La primera rutina utiliza un bucle "for" para pasar por cada caracter en la cadena de texto *s1*, y añade el caracter al final de *caracList*. La segunda rutina utiliza la operación dividir para romper la cadena *s2* en fragmentos cada vez que encuentre espacios en blanco (espacios, tabulaciones, retornos de caroo y caracteres similares). En realidad, es simplificar un poco las cosasreferirse a los objetos de la segunda lista como palabras. Prueba a cambiar el contenido de *s2* del programa anterior por "que tal mundo!"  y ejecútalo de nuevo. ¿Qué sucedió con el signo de exclamación? Ten en cuenta que deberás guardar los cambios antes de utilizar Ejecutar Python de nuevo.
+La primera rutina utiliza un bucle "for" para pasar por cada caracter en la cadena de texto *s1*, y añade el caracter al final de *caracList*. La segunda rutina utiliza la operación dividir para romper la cadena *s2* en fragmentos cada vez que encuentre espacios en blanco (espacios, tabulaciones, retornos de carro y caracteres similares). En realidad, es simplificar un poco las cosasreferirse a los objetos de la segunda lista como palabras. Prueba a cambiar el contenido de *s2* del programa anterior por "que tal mundo!"  y ejecútalo de nuevo. ¿Qué sucedió con el signo de exclamación? Ten en cuenta que deberás guardar los cambios antes de utilizar Ejecutar Python de nuevo.
 
 Tomando en cuenta lo que has aprendido hasta ahora, ya puedes abrir un URL, descargar la página Web en una cadena de texto, despojarla de las etiquetas HTML y luego cortar el texto en una lista de palabras. Intenta ejecutar el siguiente programa:
 
